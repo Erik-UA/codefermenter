@@ -18,7 +18,7 @@ def abs_formatting(item:str)->str:
     return Path(expanded).resolve() 
 
 
-def abs_formatting_list(item_list:list[str])->list[str]:
+def abs_formatting_list(item_list:list)->list:
     """
     Convert a list of file or directory paths to their absolute paths using the formatting_list function.
 

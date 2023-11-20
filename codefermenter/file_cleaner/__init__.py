@@ -1,4 +1,4 @@
-from models import AppParameters
+from ..models import AppParameters
 from .abstract_cleaner import AbstractCleaner
 from .default_cleaner import DefaultCleaner
 import shutil

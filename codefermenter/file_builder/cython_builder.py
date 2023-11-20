@@ -1,6 +1,6 @@
 import os
 from .abstract_builder import AbstractBuilder
-from models import FileData
+from ..models import FileData
 from distutils.core import setup
 from Cython.Build import cythonize
 from distutils.extension import Extension

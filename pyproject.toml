@@ -2,11 +2,12 @@
 name = "codefermenter"
 version = "0.1.0"
 description = ""
-authors = ["Erik <xdoom88@gmail.com>"]
+authors = ["Erik <dubovyk.erik@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+cython = "^3.0.5"
 
 
 [build-system]

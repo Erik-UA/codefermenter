@@ -4,3 +4,4 @@
 **/*.so
 .data
 **/*.sql
+**/__pycache__
