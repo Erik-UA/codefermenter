@@ -1,7 +1,8 @@
 import os
-from pathlib import Path 
+from pathlib import Path
 
-def abs_formatting(item:str)->str:
+
+def abs_formatting(item: str) -> str:
     """
     Convert a single file or directory path to its absolute path.
 
@@ -15,14 +16,14 @@ def abs_formatting(item:str)->str:
     str: The absolute path corresponding to the input item.
     """
     expanded = os.path.expanduser(item)
-    return Path(expanded).resolve() 
+    return Path(expanded).resolve()
 
 
-def abs_formatting_list(item_list:list)->list:
+def abs_formatting_list(item_list: list) -> list:
     """
     Convert a list of file or directory paths to their absolute paths using the formatting_list function.
 
-    This function iterates over a list of file or directory paths, converts each to its absolute path using the 
+    This function iterates over a list of file or directory paths, converts each to its absolute path using the
     formatting_list function, and collects them into a new list. It's useful for batch processing of path standardization.
 
     Parameters:
@@ -33,5 +34,5 @@ def abs_formatting_list(item_list:list)->list:
     """
     abs_excluded_items = []
     for item in item_list:
-        abs_excluded_items.append(abs_formatting(item)) 
+        abs_excluded_items.append(abs_formatting(item))
     return abs_excluded_items

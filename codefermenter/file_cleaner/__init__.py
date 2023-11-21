@@ -5,7 +5,7 @@ import shutil
 
 
 def remove_build_dir():
-    shutil.rmtree('/tmp/build', ignore_errors=True)
+    shutil.rmtree("/tmp/build", ignore_errors=True)
 
 
 def get_cleaner(app_parameters: AppParameters) -> AbstractCleaner:

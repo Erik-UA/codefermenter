@@ -3,6 +3,7 @@ from ..exceptions import InvalidReaderTypeException
 from .abstract_builder import AbstractBuilder
 from .cython_builder import CythonBuilder
 
+
 def get_builder(app_parameters: AppParameters) -> AbstractBuilder:
     """
     Returns an instance of a parser class based on the reader type specified in app_parameters.

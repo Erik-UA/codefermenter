@@ -8,20 +8,16 @@ from distutils.command.build_ext import build_ext
 from distutils.command.build import build
 
 
-
 class RedefineBuild(build):
     def initialize_options(self):
         super().initialize_options()
-        self.build_base = '/tmp/build'
+        self.build_base = "/tmp/build"
 
 
 class CythonBuilder(AbstractBuilder):
-
-    def redefine_inplace(self, abs_fullpath:str)->build_ext:
-
-        # Define a subclass of build_ext to add the inplace 
+    def redefine_inplace(self, abs_fullpath: str) -> build_ext:
+        # Define a subclass of build_ext to add the inplace
         class BuildExtInplace(build_ext):
-
             # -- Name generators -----------------------------------------------
             # (extension names, filenames, whatever)
             def get_ext_fullpath(self, ext_name):
@@ -31,22 +27,30 @@ class CythonBuilder(AbstractBuilder):
                 (inplace option).
                 """
                 fullname = self.get_ext_fullname(ext_name)
-                modpath = fullname.split('.')
+                modpath = fullname.split(".")
                 filename = self.get_ext_filename(modpath[-1])
 
                 # returning
                 #   package_dir/filename
                 return os.path.join(abs_fullpath, filename)
+
         return BuildExtInplace
 
-
-    def build(self, file:FileData):
+    def build(self, file: FileData):
         abs_fullpath = os.path.dirname(file.path)
         extension = [Extension(file.name, [str(file.path)])]
-        setup(ext_modules=cythonize(extension, compiler_directives={
-            'c_string_type': 'str',
-            'c_string_encoding': 'utf8',
-            'language_level': 3}),
-             cmdclass = {'build':RedefineBuild, 'build_ext': self.redefine_inplace(abs_fullpath)},
-             script_args=["build_ext", "--inplace"]    
-             )
+        setup(
+            ext_modules=cythonize(
+                extension,
+                compiler_directives={
+                    "c_string_type": "str",
+                    "c_string_encoding": "utf8",
+                    "language_level": 3,
+                },
+            ),
+            cmdclass={
+                "build": RedefineBuild,
+                "build_ext": self.redefine_inplace(abs_fullpath),
+            },
+            script_args=["build_ext", "--inplace"],
+        )

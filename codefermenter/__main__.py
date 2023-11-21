@@ -1,9 +1,7 @@
-
 from .input_args.app_args import parse_app_parameters
 from .file_preparing import get_preparing
 from .file_builder import get_builder
 from .file_cleaner import get_cleaner, remove_build_dir
-
 
 
 def main():

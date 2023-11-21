@@ -1,11 +1,12 @@
 import argparse, re, sys
 
-def validate_arg(arg:str, pattern:str)->list:
+
+def validate_arg(arg: str, pattern: str) -> list:
     pattern = re.compile(pattern)
     if not pattern.match(arg):
         raise argparse.ArgumentTypeError("Invalid arg format.")
-    arg = arg.replace(" ","")
-    return arg.split(',')
+    arg = arg.replace(" ", "")
+    return arg.split(",")
 
 
 def validate_py_files(file_list):

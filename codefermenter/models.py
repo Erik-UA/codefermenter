@@ -15,4 +15,4 @@ class AppParameters:
     exclude_files: list
     direct_files: list
     remove_source: bool
-    preparing_type:PreparingType
+    preparing_type: PreparingType
