@@ -1,5 +1,4 @@
-from ..models import AppParameters, PreparingType
-from ..exceptions import InvalidReaderTypeException
+from ..models import AppParameters
 from .abstract_builder import AbstractBuilder
 from .cython_builder import CythonBuilder
 

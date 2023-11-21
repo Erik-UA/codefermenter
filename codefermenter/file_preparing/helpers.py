@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 
 
-def abs_formatting(item: str) -> str:
+def abs_formatting(item: str) -> Path:
     """
     Convert a single file or directory path to its absolute path.
 
@@ -13,7 +13,7 @@ def abs_formatting(item: str) -> str:
     item (str): A file or directory path as a string.
 
     Returns:
-    str: The absolute path corresponding to the input item.
+    Path: The absolute path corresponding to the input item.
     """
     expanded = os.path.expanduser(item)
     return Path(expanded).resolve()

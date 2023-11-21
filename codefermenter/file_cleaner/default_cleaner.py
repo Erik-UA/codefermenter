@@ -1,4 +1,5 @@
 from .abstract_cleaner import AbstractCleaner
+from ..models import FileData
 from pathlib import Path
 import os
 
@@ -11,7 +12,7 @@ class DefaultCleaner(AbstractCleaner):
         if remove_source:
             self.extension_list.append("py")
 
-    def clean(self, file: str):
+    def clean(self, file: FileData):
         abs_fullpath = os.path.dirname(file.path)
         filename = Path(file.path).resolve().stem
         for extension in self.extension_list:

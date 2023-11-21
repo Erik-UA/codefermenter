@@ -1,16 +1,17 @@
-import argparse, re, sys
+import argparse 
+import sys
 from ..models import AppParameters, PreparingType
-from ..exceptions import AppBaseException
-from .args_helper import validate_py_files, validate_directories_files
+from ..constant import COMMAND_DIRECT, COMMAND_RECURSIVE
+from .args_helper import validate_py_file_list, validate_directories_list, validate_directory
 
 
 def add_recursive_parser(sub_command):
     recursive_parser = sub_command.add_parser(
-        "recursive", help='Help for the "recursive" command'
+        COMMAND_RECURSIVE, help=f'Help for the "{COMMAND_RECURSIVE}" command'
     )
     recursive_parser.add_argument(
         "--source-dir",
-        type=str,
+        type=validate_directory,
         default=None,
         required=True,
         help="Specify the directory of source code files. Example: --source-dir ./src or /home/user/project/src",
@@ -18,25 +19,25 @@ def add_recursive_parser(sub_command):
     recursive_parser.add_argument(
         "--exclude-files",
         default=None,
-        type=validate_py_files,
+        type=validate_py_file_list,
         help="List of files to exclude, separated by commas. Example: --exclude-files main.py,example.py",
     )
     recursive_parser.add_argument(
         "--exclude-directories",
         default=None,
-        type=validate_directories_files,
+        type=validate_directories_list,
         help="List of directories to exclude, separated by commas. Example: --exclude-directories /home/user/project/src/models",
     )
 
 
 def add_direct_parser(sub_command):
     direct_parser = sub_command.add_parser(
-        "direct", help='Help for the "direct" command'
+        COMMAND_DIRECT, help=f'Help for the "{COMMAND_DIRECT}" command'
     )
     direct_parser.add_argument(
         "--direct-files",
         default=None,
-        type=validate_py_files,
+        type=validate_py_file_list,
         required=True,
         help="List of specific files to compile, separated by commas. Example: --direct-files ./src/lib0.py, /home/user/src/lib1.py",
     )
@@ -44,12 +45,13 @@ def add_direct_parser(sub_command):
 
 def create_main_parser():
     parser = argparse.ArgumentParser(description="File conversion utility.")
-    sub_command = parser.add_subparsers(dest="command", help="Sub-command help")
-    add_recursive_parser(sub_command)
-    add_direct_parser(sub_command)
     parser.add_argument(
         "--remove-source", action="store_true", help="Delete source file"
     )
+
+    sub_command = parser.add_subparsers(dest="command", help="Sub-command help")
+    add_recursive_parser(sub_command)
+    add_direct_parser(sub_command)
     return parser
 
 
@@ -81,10 +83,10 @@ def parse_app_parameters() -> AppParameters:
     parser = create_main_parser()
     args = parser.parse_args()
 
-    if args.command == "recursive":
+    if args.command == COMMAND_RECURSIVE:
         return create_app_parameters_for_recursive(args)
 
-    elif args.command == "direct":
+    elif args.command == COMMAND_DIRECT:
         return create_app_parameters_for_direct(args)
 
     else:

@@ -1,26 +1,27 @@
 import os
-from .abstract_builder import AbstractBuilder
-from ..models import FileData
+from typing import Any
 from distutils.core import setup
 from Cython.Build import cythonize
 from distutils.extension import Extension
 from distutils.command.build_ext import build_ext
 from distutils.command.build import build
-
+from ..models import FileData
+from ..constant import BUILD_DIR
+from .abstract_builder import AbstractBuilder
 
 class RedefineBuild(build):
     def initialize_options(self):
         super().initialize_options()
-        self.build_base = "/tmp/build"
+        self.build_base = BUILD_DIR
 
 
 class CythonBuilder(AbstractBuilder):
-    def redefine_inplace(self, abs_fullpath: str) -> build_ext:
+    def redefine_inplace(self, abs_fullpath: str) -> Any:
         # Define a subclass of build_ext to add the inplace
         class BuildExtInplace(build_ext):
             # -- Name generators -----------------------------------------------
             # (extension names, filenames, whatever)
-            def get_ext_fullpath(self, ext_name):
+            def get_ext_fullpath(self, ext_name)->str:
                 """Returns the path of the filename for a given extension.
 
                 The file is located in `build_lib` or directly in the package

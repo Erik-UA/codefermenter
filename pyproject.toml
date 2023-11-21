@@ -13,7 +13,11 @@ cython = "^3.0.5"
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.1.6"
 black = "^23.11.0"
+mypy = "^1.7.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+test = "pytest"

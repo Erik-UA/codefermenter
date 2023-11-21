@@ -1,11 +1,12 @@
 from ..models import AppParameters
+from ..constant import BUILD_DIR
 from .abstract_cleaner import AbstractCleaner
 from .default_cleaner import DefaultCleaner
 import shutil
 
 
 def remove_build_dir():
-    shutil.rmtree("/tmp/build", ignore_errors=True)
+    shutil.rmtree(BUILD_DIR, ignore_errors=True)
 
 
 def get_cleaner(app_parameters: AppParameters) -> AbstractCleaner:

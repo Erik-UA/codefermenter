@@ -1,4 +1,4 @@
-from enum import IntEnum, StrEnum, auto
+from enum import IntEnum, auto
 
 
 class PreparingType(IntEnum):
