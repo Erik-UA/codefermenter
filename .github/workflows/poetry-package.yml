@@ -26,7 +26,7 @@ jobs:
     - name: Run mypy
       uses: jpetrucciani/mypy-check@1.0.0
       with:
-        path: "path/to/your/modules"
+        path: "codefermenter"
         mypy_flags: "--strict"
 
     - name: Run tests
