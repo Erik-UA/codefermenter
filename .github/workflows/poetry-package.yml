@@ -1,0 +1,34 @@
+name: Publish Python 🐍  СodeFermenter distribution 📦 to PyPI
+
+on:
+  push:
+    branches: [ master ]
+    tags:
+      - 'v*'
+
+jobs:
+  build-n-publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11'
+
+    - name: Install Poetry
+      run: pip install poetry
+
+    - name: Install dependencies
+      run: poetry install
+
+    - name: Run mypy
+      uses: jpetrucciani/mypy-check@1.0.0
+      with:
+        path: "path/to/your/modules"
+        mypy_flags: "--strict"
+
+    - name: Run tests
+      run: poetry run pytest
+
