@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from typing import List
 
 
 def abs_formatting(item: str) -> Path:
@@ -19,7 +20,7 @@ def abs_formatting(item: str) -> Path:
     return Path(expanded).resolve()
 
 
-def abs_formatting_list(item_list: list) -> list:
+def abs_formatting_list(item_list: List[str]) -> List[Path]:
     """
     Convert a list of file or directory paths to their absolute paths using the formatting_list function.
 

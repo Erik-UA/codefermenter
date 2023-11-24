@@ -5,7 +5,7 @@ from .default_cleaner import DefaultCleaner
 import shutil
 
 
-def remove_build_dir():
+def remove_build_dir() -> None:
     shutil.rmtree(BUILD_DIR, ignore_errors=True)
 
 

@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from .enums import PreparingType
+from typing import List, Optional
 
 
 @dataclass
@@ -10,9 +11,9 @@ class FileData:
 
 @dataclass
 class AppParameters:
-    source_dir: str
-    exclude_directories: list
-    exclude_files: list
-    direct_files: list
+    source_dir: Optional[str]
+    exclude_directories: List[str]
+    exclude_files: List[str]
+    direct_files: List[str]
     remove_source: bool
     preparing_type: PreparingType

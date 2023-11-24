@@ -1,4 +1,5 @@
-from ..models import AppParameters, PreparingType
+from ..models import AppParameters
+from ..enums import PreparingType
 from ..exceptions import InvalidReaderTypeException
 from .abstract_preparing import AbstractPreparing
 from .recursive_preparing import RecursivePreparing
