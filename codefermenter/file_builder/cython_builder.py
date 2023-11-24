@@ -28,9 +28,9 @@ class CythonBuilder(AbstractBuilder):
                 The file is located in `build_lib` or directly in the package
                 (inplace option).
                 """
-                fullname = self.get_ext_fullname(ext_name)
+                fullname = self.get_ext_fullname(ext_name)  # type: ignore
                 modpath = fullname.split(".")
-                filename = self.get_ext_filename(modpath[-1])
+                filename = self.get_ext_filename(modpath[-1])  # type: ignore
 
                 # returning
                 #   package_dir/filename
