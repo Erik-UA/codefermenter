@@ -6,24 +6,26 @@ import shutil
 
 
 def remove_build_dir() -> None:
+    """
+    Remove the BUILD_DIR directory and its contents.
+
+    This function uses `shutil.rmtree` to delete the directory specified by the global
+    variable BUILD_DIR. If `BUILD_DIR` does not exist or an error occurs, the function
+    will not raise an exception due to `ignore_errors=True`.
+    """
     shutil.rmtree(BUILD_DIR, ignore_errors=True)
 
 
 def get_cleaner(app_parameters: AppParameters) -> AbstractCleaner:
     """
-    Returns an instance of a parser class based on the reader type specified in app_parameters.
+    Instantiate and return a cleaner object based on application parameters.
 
-    This function currently supports the creation of a CsvReader. If the specified reader type
-    is not supported, it raises an InvalidReaderTypeException.
-
-    Parameters:
-    - app_parameters (AppParameters): Application parameters, including the reader type,
-                                      and parameters for skipping and taking items in the parsing process.
+    Args:
+        app_parameters (AppParameters): An object containing configuration and
+        run-time parameters for the application.
 
     Returns:
-    - AbstractParser: An instance of a subclass of AbstractParser.
-
-    Raises:
-    - InvalidReaderTypeException: If the reader type in app_parameters is not supported.
+        AbstractCleaner: An instantiated object of the DefaultCleaner class with
+        configuration set according to `app_parameters.remove_source`.
     """
     return DefaultCleaner(remove_source=app_parameters.remove_source)

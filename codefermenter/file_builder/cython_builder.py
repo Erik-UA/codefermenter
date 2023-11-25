@@ -11,14 +11,38 @@ from .abstract_builder import AbstractBuilder
 
 
 class RedefineBuild(build):
+    """
+    A subclass of `distutils.command.build` that redefines the base build directory during compilation.
+
+    Overrides the `initialize_options` method to set the build directory to a custom path specified
+    by the `BUILD_DIR` constant.
+    """
+
     def initialize_options(self) -> None:
+        """
+        Initialize build task options by setting the build directory to the value specified in `BUILD_DIR`.
+        """
         super().initialize_options()
         self.build_base = BUILD_DIR
 
 
 class CythonBuilder(AbstractBuilder):
+    """
+    A builder class for compiling Cython extensions.
+
+    Inherits from `AbstractBuilder`, and is used for compiling Cython modules with custom build
+    location and additional compiler directives.
+    """
+
     def redefine_inplace(self, abs_fullpath: str) -> Any:
-        # Define a subclass of build_ext to add the inplace
+        """
+        Creates and returns a subclass of `build_ext` that modifies the path to place compiled
+        extensions to match a given absolute path.
+
+        :param abs_fullpath: The absolute path where the compiled extensions will be placed.
+        :return: A subclass `BuildExtInplace` with an overridden `get_ext_fullpath` method.
+        """
+
         class BuildExtInplace(build_ext):
             # -- Name generators -----------------------------------------------
             # (extension names, filenames, whatever)
@@ -39,6 +63,11 @@ class CythonBuilder(AbstractBuilder):
         return BuildExtInplace
 
     def build(self, file: FileData) -> None:
+        """
+        Builds a Cython module from given file data.
+
+        :param file: A `FileData` object containing information about the file to be compiled.
+        """
         abs_fullpath = os.path.dirname(file.path)
         extension = [Extension(file.name, [str(file.path)])]
         setup(

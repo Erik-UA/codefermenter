@@ -8,22 +8,19 @@ from .direct_preparing import DirectPreparing
 
 def get_preparing(app_parameters: AppParameters) -> AbstractPreparing:
     """
-    Returns an instance of a parser class based on the reader type specified in app_parameters.
+    Creates an instance of a preparing class based on the preparing type specified in app_parameters.
 
-    This function currently supports the creation of a CsvReader. If the specified reader type
-    is not supported, it raises an InvalidReaderTypeException.
-
-    Parameters:
-    - app_parameters (AppParameters): Application parameters, including the reader type,
-                                      and parameters for skipping and taking items in the parsing process.
+    Args:
+        app_parameters (AppParameters): The application parameters object containing the preparing type
+                                        and other related configurations.
 
     Returns:
-    - AbstractParser: An instance of a subclass of AbstractParser.
+        AbstractPreparing: An instance of a concrete subclass of AbstractPreparing as per the
+                           preparing_type in app_parameters.
 
     Raises:
-    - InvalidReaderTypeException: If the reader type in app_parameters is not supported.
+        InvalidReaderTypeException: If the preparing_type is not recognized (neither RECURSIVE nor DIRECT).
     """
-
     if app_parameters.preparing_type == PreparingType.RECURSIVE:
         return RecursivePreparing(
             source_dir=app_parameters.source_dir,
