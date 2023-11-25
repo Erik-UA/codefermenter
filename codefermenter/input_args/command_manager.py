@@ -6,12 +6,14 @@ from ..models import AppParameters
 
 
 class CommandManager:
-    main_parser = argparse.ArgumentParser(description="File conversion utility.")
-    sub_parser = main_parser.add_subparsers(dest="command", help="Sub-command help")
-    command_list: List[CommandAbstract] = []
+
 
     def __init__(self) -> None:
+        self.main_parser = argparse.ArgumentParser(description="File conversion utility.")
+        self.sub_parser = self.main_parser.add_subparsers(dest="command", help="Sub-command help")
+        self.command_list: List[CommandAbstract] = []
         self.add_main_args()
+
 
     def add_main_args(self) -> None:
         self.main_parser.add_argument(

@@ -1,4 +1,3 @@
-import argparse
 from typing import Any
 from .command_abstract import CommandAbstract
 from ..args_helper import validate_py_file_list
@@ -10,7 +9,7 @@ from ...constant import COMMAND_DIRECT
 class CommandDirect(CommandAbstract):
     _name = COMMAND_DIRECT
 
-    def parse_command(cls, arg_parser: argparse._SubParsersAction[Any]) -> None:
+    def parse_command(cls, arg_parser: Any) -> None:
         direct_parser = arg_parser.add_parser(
             COMMAND_DIRECT, help=f'Help for the "{COMMAND_DIRECT}" command'
         )
