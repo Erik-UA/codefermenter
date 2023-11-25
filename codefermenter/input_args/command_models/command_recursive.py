@@ -1,4 +1,3 @@
-import argparse
 from typing import Any
 from .command_abstract import CommandAbstract
 from ..args_helper import (
@@ -14,7 +13,7 @@ from ...constant import COMMAND_RECURSIVE
 class CommandRecursive(CommandAbstract):
     _name = COMMAND_RECURSIVE
 
-    def parse_command(cls, arg_parser: argparse._SubParsersAction[Any]) -> None:
+    def parse_command(cls, arg_parser: Any) -> None:
         recursive_parser = arg_parser.add_parser(
             COMMAND_RECURSIVE, help=f'Help for the "{COMMAND_RECURSIVE}" command'
         )
