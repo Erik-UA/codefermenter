@@ -2,11 +2,11 @@ name: Publish Python 🐍  СodeFermenter distribution 📦 to PyPI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ dev ]
     tags:
       - 'v*'
   pull_request:
-    branches: [ dev ]
+    branches: [ master ]
 
 jobs:
   build-n-publish:
