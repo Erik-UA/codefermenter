@@ -3,5 +3,6 @@
 **/*.so
 **/*.sql
 **/__pycache__
+**/*.txt
 .mypy_cache
 .ruff_cache

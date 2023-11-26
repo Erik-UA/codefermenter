@@ -1,12 +1,10 @@
-name: Publish Python 🐍  СodeFermenter distribution 📦 to PyPI
+name: Publish  🐍  СodeFermenter distribution 📦 to test PyPI
 
 on:
   push:
     branches: [ dev ]
     tags:
       - 'v*'
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build-n-publish:
@@ -34,3 +32,8 @@ jobs:
     - name: Run tests
       run: python -m unittest discover -s tests
 
+    - name: Build and publish
+      if: startsWith(github.ref, 'refs/tags/v')
+      run: |
+        poetry build
+        poetry publish --repository testpypi --username __token__ --password ${{ secrets.TEST_PYPI_API_TOKEN }}
