@@ -1,9 +1,23 @@
 [tool.poetry]
 name = "codefermenter"
 version = "0.1.0"
-description = ""
-authors = ["Erik <dubovyk.erik@gmail.com>"]
+description = "CodeFermenter: On-the-Fly Code Obfuscation Tool. A tool designed for real-time code obfuscation, ideal for deployment phases or protecting key parts of an algorithm in public repositories. Built on Cython, it features an abstraction layer for quick and functional extensions. Features include Recursive Mode for directory processing, Direct Mode for protecting specific files, and an option to remove source files post-obfuscation. Note: The application's entry point should remain unobfuscated."
+authors = ["Erik Dubovyk <dubovyk.erik@gmail.com>"]
+license = "MIT"
 readme = "README.md"
+homepage = "https://github.com/Erik-UA/codefermenter"
+repository = "https://github.com/Erik-UA/codefermenter"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+include = [
+    "LICENSE",
+]
 
 [tool.poetry.dependencies]
 python = "^3.11"

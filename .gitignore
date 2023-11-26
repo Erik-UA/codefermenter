@@ -1,8 +1,6 @@
-.env
 **/venv
 **/*.pyc
 **/*.so
-.data
 **/*.sql
 **/__pycache__
 .mypy_cache

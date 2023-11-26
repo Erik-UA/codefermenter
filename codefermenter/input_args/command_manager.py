@@ -65,7 +65,6 @@ class CommandManager:
         for command in self.command_list:
             if args.command == command._name:
                 app_params = command.create_app_parameters_for_command(args)
-                print(app_params)
                 return app_params
 
         self.main_parser.print_help()
