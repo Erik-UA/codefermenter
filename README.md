@@ -43,3 +43,20 @@ The entry point of the application should remain in its original form. Only auxi
 ```bash
 python -m codefermenter direct --direct-files ./app.py
 ```
+
+
+
+## License and Acknowledgements
+
+### License of This Application
+
+This application is licensed under the MIT License. This permissive license allows for reuse with only very limited restriction. The full text of our MIT License can be found in the [LICENSE](LICENSE) file included with this software.
+
+### Acknowledgement to Cython
+
+This software utilizes Cython, a key tool for writing C extensions for Python. The original Pyrex program, on which Cython is based, was licensed "free of restrictions". Cython itself is under the permissive Apache License.
+
+For more details on Cython's license, see [Cython's LICENSE.txt](https://github.com/cython/cython/blob/master/LICENSE.txt).
+
+We are grateful to the Cython community for their contributions to the open-source ecosystem.
+
